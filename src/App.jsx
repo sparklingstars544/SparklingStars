@@ -1,6 +1,6 @@
 import "./App.scss";
 import Home from "./components/Home/Home";
-import Reviews from "./components/Reviews/Reviews";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <Home />
       </section>
       <section>
-        <Reviews />
+        <Contact />
       </section>
     </>
   );
