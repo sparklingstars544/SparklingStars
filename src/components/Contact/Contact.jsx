@@ -1,4 +1,6 @@
 import "./Contact.scss";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 // const icons = [
 //   {
 //     id: 1,
@@ -73,6 +75,23 @@ import "./Contact.scss";
 //   },
 // ];
 const Contact = () => {
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const formRef = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+    try {
+      emailjs.sendForm(
+        "service_k3rx1j4",
+        "template_i7tgtej",
+        formRef.current,
+        "GFie4fUsUBaD8xdUr"
+      );
+      setSuccess(!success);
+    } catch (error) {
+      setError(!error);
+    }
+  };
   return (
     <>
       <div className="contact">
@@ -125,17 +144,21 @@ const Contact = () => {
           </svg>
         </div>
         <div className="contact-form">
-          <form action="">
+          <form ref={formRef} onSubmit={sendEmail}>
             <input type="text" placeholder="Student's Name" />
-            <input type="text" placeholder="Gaurdian's Name" />
-            <input type="email" placeholder="Email" />
-            <textarea rows={6} placeholder="Message"></textarea>
+            <input type="text" placeholder="Gaurdian's Name" name="name" />
+            <input type="email" placeholder="Email" name="email" />
+            <textarea rows={6} placeholder="Message" name="message"></textarea>
             <button>Submit</button>
           </form>
         </div>
+        {success && "Mail sent successfully!"}
+        {error && "Unable to send mail!"}
       </div>
     </>
   );
 };
 
 export default Contact;
+
+

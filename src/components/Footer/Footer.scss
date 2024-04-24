@@ -1,0 +1,18 @@
+.footer {
+    background-color: #e5f1ff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+    padding: 1rem 0 3rem 0;
+
+    .footer-section {
+        // background-color: #fff;
+
+        .logo {
+            height: 6rem;
+            width: 4rem;
+        }
+    }
+}
